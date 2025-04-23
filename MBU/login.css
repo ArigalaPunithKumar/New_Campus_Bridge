@@ -1,0 +1,167 @@
+/* Styles specifically for login.html components */
+
+/* --- Authentication Container --- */
+.auth-container {
+    background-color: var(--surface-color);
+    padding: 2.5rem 3.5rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg);
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    transition: opacity 0.5s var(--transition-easing), transform 0.5s var(--transition-easing);
+    display: none;
+    margin: 2rem auto; /* Center on page */
+}
+
+.auth-container.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.auth-view {
+    display: none;
+    animation: fadeIn 0.6s var(--transition-easing) forwards;
+}
+
+.auth-view.active {
+    display: block;
+}
+
+.auth-form h2 {
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.auth-form p {
+    margin-bottom: 2rem;
+    color: var(--text-muted-color);
+    font-size: 1.05rem;
+}
+
+.auth-links {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+.auth-links a {
+    margin: 0 8px;
+}
+
+.auth-links span {
+    color: var(--text-muted-color);
+}
+
+/* --- Modal Styles --- */
+/* Keep modal styles here as it's part of login.html structure */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(33, 37, 41, 0.7);
+    animation: fadeIn 0.4s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    padding: 35px 45px;
+    border: none;
+    width: 90%;
+    max-width: 700px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg);
+    position: relative;
+    animation: slideDown 0.5s var(--transition-easing) forwards;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+}
+
+.modal.active .modal-content {
+    opacity: 1;
+}
+
+.close-button {
+    color: #adb5bd;
+    position: absolute;
+    top: 18px;
+    right: 25px;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--danger-color);
+    text-decoration: none;
+    cursor: pointer;
+    transform: rotate(90deg) scale(1.1);
+}
+
+#modal-title {
+    margin-bottom: 1.8rem;
+    color: var(--primary-color);
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+#modal-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 15px;
+    margin-right: -15px;
+}
+
+#modal-body pre {
+    background: var(--surface-alt-color);
+    padding: 15px 20px;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--code-font);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 40vh;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Responsive Adjustments for Auth/Modal */
+@media (max-width: 768px) {
+    .auth-container { padding: 2rem 1.5rem; margin: 1rem; max-width: 95%; }
+    .auth-form h2 { font-size: 1.8rem; }
+    .modal-content { width: 92%; max-width: 92%; margin: 5% auto; padding: 25px 30px; max-height: 90vh; }
+    #modal-title { font-size: 1.4rem; }
+    #modal-body { padding-right: 10px; margin-right: -10px; }
+}
+
+@media (max-width: 480px) {
+    .auth-container { padding: 1.5rem 1rem; }
+    .auth-form h2 { font-size: 1.6rem; }
+    .auth-form p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .modal-content { padding: 20px 25px; }
+    #modal-title { font-size: 1.3rem; margin-bottom: 1.2rem; }
+} 

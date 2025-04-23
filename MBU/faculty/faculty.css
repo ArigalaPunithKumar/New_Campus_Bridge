@@ -1,0 +1,77 @@
+/* === Faculty Dashboard Specific Styles === */
+
+.faculty-dashboard {
+    --theme-color: #8e44ad;
+    /* Purple */
+    --theme-color-light: #f3e5f5;
+}
+
+.faculty-dashboard .sidebar {
+    background-color: #fdfafe;
+    /* Very light purple tint */
+}
+
+.faculty-dashboard .sidebar h2 {
+    color: var(--theme-color);
+}
+
+.faculty-dashboard .sidebar nav ul li a:hover,
+.faculty-dashboard .sidebar nav ul li a.active-link {
+    color: var(--theme-color);
+    border-left-color: var(--theme-color);
+    background-color: var(--theme-color-light);
+}
+
+.faculty-dashboard .dashboard-section h2 {
+    color: var(--theme-color);
+}
+
+/* Mobile Specific overrides for faculty theme */
+@media (max-width: 768px) {
+    .faculty-dashboard .sidebar nav ul li a:hover {
+        border-bottom-color: var(--theme-color-light);
+    }
+
+    .faculty-dashboard .sidebar nav ul li a.active-link {
+        border-bottom-color: var(--theme-color);
+        color: var(--theme-color);
+    }
+}
+
+/* Styles for components primarily used in Faculty Dashboard */
+
+/* Add any faculty-specific component styles here if needed */
+/* Example: Styling for the attendance marking checkboxes */
+#attendance-student-list div {
+    margin-bottom: 0.8rem;
+    padding: 8px;
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.2s ease;
+}
+
+#attendance-student-list div:hover {
+    background-color: #eee;
+}
+
+#attendance-student-list label {
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+#attendance-student-list input[type="checkbox"] {
+    width: auto;
+    /* Override default form width */
+    margin-right: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* Hide all dashboard sections by default */
+.dashboard-section {
+    display: none;
+}
+
+/* Show only active dashboard section */
+.dashboard-section.active {
+    display: block;
+}

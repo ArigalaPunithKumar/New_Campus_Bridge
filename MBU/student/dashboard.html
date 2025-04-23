@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Campus Bridge</title>
+    <!-- Common Styles (adjust path as needed) -->
+    <link rel="stylesheet" href="../common_styles.css">
+    <!-- Student Specific Styles (adjust path as needed) -->
+    <link rel="stylesheet" href="student.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="app-active"> <!-- Add class to style body for app view -->
+
+    <!-- ===== Application Header (Common) ===== -->
+    <header class="app-header">
+        <h1>Campus Bridge</h1>
+        <div class="user-info">
+            <span id="user-name-display">Welcome, Student!</span>
+            <button id="logout-button" class="btn btn-sm btn-danger">Logout</button>
+        </div>
+    </header>
+
+    <!-- ===== Main Dashboard Area (Student Specific) ===== -->
+    <div id="student-dashboard" class="dashboard student-dashboard" style="display: flex;">
+        <aside id="sidebar" class="sidebar"> <!-- Added ID -->
+            <h2>Student Menu</h2>
+            <nav>
+                <ul>
+                    <!-- Added data-target attributes for JS navigation -->
+                    <li><a href="#student-home" data-target="student-home" class="active-link">Dashboard Home</a></li>
+                    <li><a href="#student-academic" data-target="student-academic">Academic Hub</a></li>
+                    <li><a href="#student-coding" data-target="student-coding">Coding Zone</a></li>
+                    <li><a href="#student-live-code" data-target="student-live-code">Live Coding Rooms</a></li>
+                    <!-- New Menu Item -->
+                    <li><a href="#student-attendance-detail" data-target="student-attendance-detail">My Attendance</a>
+                    </li>
+                    <li><a href="#student-profile" data-target="student-profile">My Profile</a></li>
+                    <li><a href="#student-jobs" data-target="student-jobs">Job Match</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main id="main-content" class="main-content"> <!-- Added ID -->
+
+            <!-- Student Home (Initial view) -->
+            <section id="student-home" class="dashboard-section active">
+                <h2>Welcome, Student!</h2>
+                <p>Quick overview of your academic and coding activities.</p>
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <h3>Attendance</h3>
+                        <p><span id="student-attendance-stat">--</span>%</p>
+                        <span>Overall</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Assignments</h3>
+                        <p><span id="student-pending-stat">--</span></p>
+                        <span>Academic & Coding</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Coding Streak</h3>
+                        <p><span id="student-streak-stat">--</span> Days</p>
+                        <span>Keep it up!</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Badges Earned</h3>
+                        <p><span id="student-badges-stat">--</span></p>
+                        <span><a href="#student-profile" data-target="student-profile">View Profile</a></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Academic Hub -->
+            <section id="student-academic" class="dashboard-section">
+                <h2>Academic Hub</h2>
+                <div class="content-block">
+                    <h3>My Attendance Summary</h3>
+                    <div id="attendance-summary" class="attendance-summary">
+                        <p>Loading attendance summary...</p>
+                    </div>
+                    <a href="#student-attendance-detail" data-target="student-attendance-detail">View Detailed
+                        Attendance Chart</a>
+                </div>
+                <div class="content-block">
+                    <h3>My Courses & Materials</h3>
+                    <ul id="course-list" class="course-list">
+                        <li>Loading courses...</li>
+                    </ul>
+                </div>
+                <div class="content-block">
+                    <h3>Assignments</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Assignment</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Grade/Review</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assignments-table-body">
+                            <tr>
+                                <td colspan="6">Loading assignments...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Student Coding Section -->
+            <section id="student-coding" class="dashboard-section">
+                <h2>Coding Zone</h2>
+                <div class="content-block">
+                    <h3>Available Coding Tracks</h3>
+                    <div id="coding-tracks" class="coding-tracks">
+                        <p>Loading tracks...</p>
+                    </div>
+                    <button class="btn btn-secondary" id="enroll-track-btn">Enroll in New Track</button>
+                </div>
+                <div class="content-block compiler-container">
+                    <h3>Practice Ground / Online Compiler</h3>
+                    <div class="compiler-controls">
+                        <label for="language-select">Language:</label>
+                        <select id="language-select">
+                            <option value="python">Python</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="java">Java</option>
+                            <option value="c_cpp">C++</option>
+                            <option value="c">C</option>
+                            <!-- Add more languages supported by your backend -->
+                        </select>
+                        <button id="run-code-btn" class="btn btn-success">Run Code</button>
+                        <button id="ai-review-btn" class="btn btn-primary">AI Review</button>
+                        <button id="ai-debug-btn" class="btn btn-danger">AI Debug</button>
+                        <button id="ai-hint-btn" class="btn btn-warning">AI Hint</button>
+                    </div>
+                    <div class="editor-area"><textarea id="code-editor" placeholder="Write your code here..."
+                            spellcheck="false"></textarea></div>
+                    <div class="input-area" style="margin-top: 10px;">
+                        <h4>Input (Optional):</h4><textarea id="code-input"
+                            placeholder="Provide input for your code here (if needed)..." rows="3"></textarea>
+                    </div>
+                    <div class="output-area">
+                        <h4>Output / Console:</h4>
+                        <pre id="output-console">Output will appear here...</pre>
+                    </div>
+                    <div class="ai-feedback-area">
+                        <h4>AI Assistant Feedback:</h4>
+                        <div id="ai-feedback-box" class="ai-box">AI feedback will appear here.</div>
+                        <div id="ai-rating" class="ai-box">Rating: N/A</div>
+                    </div>
+                </div>
+                <!-- Live Code Rooms Div removed from here -->
+            </section>
+
+            <!-- New Student Live Code Section -->
+            <section id="student-live-code" class="dashboard-section">
+                <h2>Live Group Code Rooms</h2>
+                <div class="content-block">
+                    <p>Collaborate with peers in real-time on coding problems or projects.</p>
+                    <p><em>Note: This feature requires a separate real-time collaboration service integration (e.g.,
+                            using WebSockets, WebRTC, or a third-party service).</em></p>
+                    <div style="margin-top: 1.5rem;">
+                        <button class="btn btn-secondary" disabled>Join an Existing Room</button>
+                        <button class="btn btn-secondary" disabled style="margin-left: 10px;">Create a New Room</button>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <h4>Available Rooms (Placeholder)</h4>
+                        <ul class="content-list">
+                            <li>Room Alpha (Python Basics) - 2/5 participants <button class="btn btn-sm btn-success"
+                                    style="float:right;" disabled>Join</button></li>
+                            <li>Room Beta (Web Dev Project) - 3/4 participants <button class="btn btn-sm btn-success"
+                                    style="float:right;" disabled>Join</button></li>
+                            <li>Data Structures Practice - 1/5 participants <button class="btn btn-sm btn-success"
+                                    style="float:right;" disabled>Join</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Attendance Detail Section -->
+            <section id="student-attendance-detail" class="dashboard-section">
+                <h2>My Detailed Attendance</h2>
+                <p>Visual overview of your attendance percentage per course.</p>
+                <div class="content-block">
+                    <div id="attendance-chart-container" class="attendance-chart-container">
+                        <!-- Bar charts will be dynamically generated here -->
+                        <p>Loading attendance charts...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Profile Section -->
+            <section id="student-profile" class="dashboard-section">
+                <h2>My Profile & Progress</h2>
+                <div class="content-block">
+                    <h3>Personal Information</h3>
+                    <div id="profile-details">
+                        <p><strong>Name:</strong> <span id="profile-name">Loading...</span></p>
+                        <p><strong>ID:</strong> <span id="profile-id">Loading...</span></p>
+                        <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" id="edit-profile-btn">Edit Profile</button>
+                </div>
+                <div class="content-block">
+                    <h3>Skill Heatmap</h3>
+                    <div id="heatmap-container" class="heatmap-placeholder">
+                        <p>Skill heatmap loading...</p>
+                        <!-- Placeholder - requires library -->
+                        <div
+                            style="width:100%; height: 150px; background: linear-gradient(to right, #eee, #ddd); border: 1px dashed #ccc; display:flex; align-items:center; justify-content: center;">
+                            (Heatmap Area)</div>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <h3>Badges Earned</h3>
+                    <div id="badges-container" class="badges-container">
+                        <p>Loading badges...</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <h3>Weekly Streaks</h3>
+                    <p>Current Coding Streak: 🔥 <span id="profile-streak-current">--</span> Days</p>
+                    <p>Longest Streak: <span id="profile-streak-longest">--</span> Days</p>
+                    <div id="streak-visualization">
+                        <p>(Streak visualization area - Requires Library)</p>
+                        <div
+                            style="width:100%; height: 80px; background: #f0f0f0; border: 1px dashed #ccc; display:flex; align-items:center; justify-content: center;">
+                            (Streak Vis Area)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Student Job Match Section -->
+            <section id="student-jobs" class="dashboard-section">
+                <h2>Job Match Recommender</h2>
+                <div class="content-block">
+                    <p>Based on your profile and coding activity, here are some potential job roles:</p>
+                    <div id="job-matches-container">
+                        <p>Loading job recommendations...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- ===== End Main Dashboard Area ===== -->
+
+    <!-- Utility Script (adjust path) -->
+    <script src="../utils.js"></script> <!-- Ensure path is correct -->
+    <!-- Student Specific Script (adjust path) -->
+    <script src="student.js"></script> <!-- Ensure path is correct -->
+
+    <!-- Authentication Check & Setup Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUserStr = localStorage.getItem('currentUser');
+            const userNameDisplay = document.getElementById('user-name-display');
+            const logoutButton = document.getElementById('logout-button');
+
+            if (!currentUserStr) {
+                console.log("No user found in localStorage. Redirecting to login.");
+                window.location.href = '/login.html'; // Adjust path if needed
+                return;
+            }
+
+            try {
+                const currentUser = JSON.parse(currentUserStr);
+
+                if (currentUser.role !== 'student') {
+                    console.warn(`User role (${currentUser.role}) does not match page (student). Redirecting.`);
+                    localStorage.removeItem('currentUser');
+                    window.location.href = '/login.html';
+                    return;
+                }
+
+                if (userNameDisplay) {
+                    userNameDisplay.textContent = `Welcome, ${currentUser.name || currentUser.id}!`;
+                }
+
+                if (logoutButton) {
+                    logoutButton.addEventListener('click', () => {
+                        console.log("Logging out...");
+                        localStorage.removeItem('currentUser');
+                        window.location.href = '/login.html';
+                    });
+                }
+
+                // Call the initialization function from student.js
+                if (typeof initializeStudentDashboard === 'function') {
+                    initializeStudentDashboard(currentUser); // Pass user data
+                } else {
+                    console.error("initializeStudentDashboard function not found in student.js!");
+                }
+
+            } catch (error) {
+                console.error("Error parsing user data or initializing dashboard:", error);
+                localStorage.removeItem('currentUser');
+                window.location.href = '/login.html';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

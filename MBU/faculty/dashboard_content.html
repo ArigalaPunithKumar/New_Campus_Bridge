@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Main layout container -->
+    <div id="faculty-dashboard" class="dashboard faculty-dashboard">
+        <nav id="sidebar" class="sidebar">
+            <h2>Faculty Menu</h2>
+            <ul>
+                <li><a href="#" data-target="faculty-home" class="active-link">Dashboard Home</a></li>
+                <li><a href="#" data-target="faculty-courses">Manage Courses</a></li>
+                <li><a href="#" data-target="faculty-grading">Grading & Feedback</a></li>
+                <li><a href="#" data-target="faculty-attendance">Attendance Tracking</a></li>
+                <li><a href="#" data-target="faculty-communication">Communication</a></li>
+            </ul>
+        </nav>
+        <main id="main-content" class="main-content">
+            <div class="app-header-placeholder"
+                style="padding: 1rem; background: #eee; margin-bottom: 1.5rem; border-radius: 8px;">
+                <h1>Welcome, Faculty!</h1>
+            </div>
+
+            <!-- Faculty Home Section -->
+            <section id="faculty-home" class="dashboard-section active">
+                <h2>Welcome, Faculty!</h2>
+                <p>Overview of your courses and student interactions.</p>
+                <div class="quick-stats">
+                    <div class="stat-card">
+                        <h3>Active Courses</h3>
+                        <p><span id="faculty-courses-stat">--</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Submissions to Grade</h3>
+                        <p><span id="faculty-grading-stat">--</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Recent Announcements</h3>
+                        <p><span id="faculty-announcements-stat">--</span></p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <h3>Quick Actions</h3>
+                    <button class="btn btn-primary" data-target="faculty-courses">Manage Courses</button>
+                    <button class="btn btn-secondary" data-target="faculty-grading">Grade Submissions</button>
+                    <button class="btn btn-secondary" data-target="faculty-communication">Send Announcement</button>
+                </div>
+            </section>
+
+            <!-- Manage Courses Section -->
+            <section id="faculty-courses" class="dashboard-section">
+                <div class="content-block">
+                    <h3>My Courses</h3>
+                    <div id="faculty-course-list">
+                        <p>Loading your courses...</p>
+                    </div>
+                    <button class="btn btn-primary" id="add-new-course-btn">Add New Course</button>
+                </div>
+                <div class="content-block">
+                    <h3>Upload Content / Manage Materials for Selected Course</h3>
+                    <p>(Select a course above to manage its materials)</p>
+                    <div id="course-materials-manager" style="display: none;">
+                        <form id="upload-content-form">
+                            <input type="hidden" id="selected-course-id-hidden">
+                            <p>Upload form placeholder...</p>
+                            <button type="submit" class="btn">Upload</button>
+                        </form>
+                        <div id="existing-materials-list">
+                            <h4>Existing Materials:</h4>
+                            <ul>
+                                <li>Loading...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grading & Feedback Section -->
+            <section id="faculty-grading" class="dashboard-section">
+                <h2>Grading & Feedback</h2>
+                <div class="content-block">
+                    <h3>Pending Submissions</h3>
+                    <select id="grading-course-filter">
+                        <option value="">Filter by Course...</option>
+                    </select>
+                    <select id="grading-assignment-filter">
+                        <option value="">Filter by Assignment...</option>
+                    </select>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Assignment</th>
+                                <th>Submitted On</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pending-submissions-table">
+                            <tr>
+                                <td colspan="4">Loading submissions...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="content-block">
+                    <h3>Recently Graded</h3>
+                    <div id="recently-graded-list">
+                        <p>Loading recently graded items...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Tracking Section -->
+            <section id="faculty-attendance" class="dashboard-section">
+                <h2>Attendance Tracking</h2>
+                <div class="content-block">
+                    <h3>Record Attendance</h3>
+                    <div class="form-group">
+                        <label for="attendance-course-select">Select Course:</label>
+                        <select id="attendance-course-select">
+                            <option value="">Loading...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendance-date">Select Date:</label>
+                        <input type="date" id="attendance-date" value="${new Date().toISOString().substring(0, 10)}">
+                    </div>
+                    <button id="load-attendance-sheet-btn" class="btn btn-primary">Load Student List for Date</button>
+                    <div id="attendance-sheet-container" style="margin-top: 1.5rem;">
+                        <p>Select course and date to load attendance sheet.</p>
+                    </div>
+                    <button id="submit-attendance-btn" class="btn btn-success"
+                        style="display:none; margin-top: 1rem;">Submit Attendance</button>
+                    <div id="attendance-submit-message" class="form-message"></div>
+                </div>
+                <div class="content-block">
+                    <h3>View Attendance Reports</h3>
+                    <p>(Placeholder for selecting course/date range and viewing reports)</p>
+                    <button class="btn btn-secondary" disabled>Generate Report</button>
+                </div>
+            </section>
+
+            <!-- Communication Section -->
+            <section id="faculty-communication" class="dashboard-section">
+                <h2>Communication Hub</h2>
+                <div class="content-block">
+                    <h3>Send Announcement</h3>
+                    <form id="send-announcement-form">
+                        <div class="form-group">
+                            <label for="announcement-target">Target:</label>
+                            <select id="announcement-target" name="target" required>
+                                <option value="all_students">All My Students</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="announcement-subject">Subject:</label>
+                            <input type="text" id="announcement-subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="announcement-message">Message:</label>
+                            <textarea id="announcement-message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Announcement</button>
+                        <div id="announcement-send-message" class="form-message"></div>
+                    </form>
+                </div>
+                <div class="content-block">
+                    <h3>Past Announcements</h3>
+                    <div id="past-announcements-list">
+                        <p>Loading past announcements...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="faculty/faculty.js"></script>
+    <script>
+        // Simulated currentUser object for initialization
+        const currentUser = { id: 'F201', name: 'Prof. Davis', role: 'Faculty' };
+        initializeFacultyDashboard(currentUser);
+    </script>
+</body>
+
+</html>

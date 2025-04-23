@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - Campus Bridge</title>
+    <!-- Common Styles (adjust path) -->
+    <link rel="stylesheet" href="../common_styles.css"> <!-- Make sure path is correct -->
+    <!-- Faculty Specific Styles (adjust path) -->
+    <link rel="stylesheet" href="faculty.css"> <!-- Make sure path is correct -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="app-active">
+
+    <!-- ===== Application Header (Common) ===== -->
+    <header class="app-header">
+        <h1>Campus Bridge</h1>
+        <div class="user-info">
+            <span id="user-name-display">Welcome, Faculty!</span>
+            <button id="logout-button" class="btn btn-sm btn-danger">Logout</button>
+        </div>
+    </header>
+
+    <!-- ===== Main Dashboard Area (Faculty Specific) ===== -->
+    <!-- Structure is defined directly here -->
+    <div id="faculty-dashboard" class="dashboard faculty-dashboard" style="display: flex;">
+        <aside id="sidebar" class="sidebar"> <!-- Added ID -->
+            <h2>Faculty Menu</h2>
+            <nav>
+                <ul>
+                    <!-- !!! ADDED data-target ATTRIBUTES !!! -->
+                    <li><a href="#faculty-home" data-target="faculty-home" class="active-link">Dashboard Home</a></li>
+                    <li><a href="#faculty-courses" data-target="faculty-courses">Course Management</a></li>
+                    <li><a href="#faculty-attendance" data-target="faculty-attendance">Manage Attendance</a></li>
+                    <li><a href="#faculty-assignments" data-target="faculty-assignments">Assignments & Grading</a></li>
+                    <li><a href="#faculty-progress" data-target="faculty-progress">Student Progress</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main id="main-content" class="main-content"> <!-- Added ID -->
+            <section id="faculty-home" class="dashboard-section active">
+                <h2>Welcome, Faculty!</h2>
+                <p>Manage your courses, track student progress, and engage with learners.</p>
+                <!-- Add quick stats or actions if desired -->
+                <div class="quick-stats" style="margin-top: 1.5rem;">
+                    <div class="stat-card">
+                        <h3>Active Courses</h3>
+                        <p><span id="faculty-courses-stat">--</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Submissions Pending</h3>
+                        <p><span id="faculty-grading-stat">--</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Students</h3>
+                        <p><span id="faculty-students-stat">--</span></p>
+                    </div>
+                </div>
+            </section>
+            <section id="faculty-courses" class="dashboard-section">
+                <h2>Course Management</h2>
+                <div class="content-block">
+                    <h3>My Courses</h3>
+                    <select id="faculty-course-select">
+                        <option value="">Loading courses...</option>
+                    </select>
+                    <button class="btn btn-sm btn-secondary" id="add-course-btn" style="margin-left: 10px;">Add
+                        Course</button>
+                </div>
+                <div class="content-block" id="course-management-details" style="display: none;">
+                    <!-- Hide initially -->
+                    <h3>Upload Content for <span class="selected-course-name-display">Selected Course</span></h3>
+                    <form id="upload-content-form">
+                        <input type="hidden" id="upload-course-id" name="courseId">
+                        <div class="form-group">
+                            <label for="content-type">Content Type:</label>
+                            <select id="content-type" name="contentType" required>
+                                <option value="">--Select Type--</option>
+                                <option value="notes">Lecture Notes (PDF/Doc)</option>
+                                <option value="video">Video Link</option>
+                                <option value="assignment_spec">Assignment Specification</option>
+                                <option value="resource_link">External Resource Link</option>
+                                <option value="other">Other Material</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="content-title">Title / Name:</label>
+                            <input type="text" id="content-title" name="contentTitle"
+                                placeholder="e.g., Week 1 Lecture Notes" required>
+                        </div>
+                        <div class="form-group" id="content-url-group" style="display: none;">
+                            <!-- Show only for links/videos -->
+                            <label for="content-url">URL:</label>
+                            <input type="url" id="content-url" name="contentUrl" placeholder="https://...">
+                        </div>
+                        <div class="form-group" id="file-upload-group" style="display: block;"> <!-- Show by default -->
+                            <label for="content-file">Upload File (if applicable):</label>
+                            <input type="file" id="content-file" name="contentFile">
+                        </div>
+                        <div class="form-group">
+                            <label for="content-description">Description (Optional):</label>
+                            <textarea id="content-description" name="contentDescription" rows="3"
+                                placeholder="Brief description or instructions..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload Content</button>
+                        <div id="upload-message" class="form-message" style="display: none;"></div>
+                    </form>
+                    <hr style="margin: 2rem 0;">
+                    <h3>Existing Content for <span class="selected-course-name-display">Selected Course</span></h3>
+                    <ul id="existing-content-list" class="content-list">
+                        <li>Select a course to view content.</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="faculty-attendance" class="dashboard-section">
+                <h2>Manage Attendance</h2>
+                <div class="content-block">
+                    <h3>Select Course and Date</h3>
+                    <div class="form-group inline">
+                        <label for="attendance-course-select">Course:</label>
+                        <select id="attendance-course-select">
+                            <option value="">Loading courses...</option>
+                        </select>
+                    </div>
+                    <div class="form-group inline">
+                        <label for="attendance-date">Date:</label>
+                        <input type="date" id="attendance-date" name="attendanceDate" required
+                            value="${new Date().toISOString().substring(0, 10)}"> <!-- Default to today -->
+                    </div>
+                    <button id="load-attendance-btn" class="btn btn-secondary">Load Student List</button>
+                </div>
+                <div class="content-block" id="attendance-sheet-block" style="display:none;"> <!-- Hide initially -->
+                    <h3 id="attendance-header">Post Attendance</h3>
+                    <form id="post-attendance-form">
+                        <div id="attendance-student-list" class="attendance-list-container">
+                            <p>Please select a course and date first.</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Submit
+                            Attendance</button>
+                        <p id="attendance-message" class="form-message" style="display: none;"></p>
+                    </form>
+                </div>
+            </section>
+            <section id="faculty-assignments" class="dashboard-section">
+                <h2>Assignments & Grading</h2>
+                <div class="content-block">
+                    <h3>Create / Manage Assignments</h3>
+                    <div class="form-group">
+                        <label for="assignment-course-select">Course:</label>
+                        <select id="assignment-course-select">
+                            <option value="">Loading courses...</option>
+                        </select>
+                    </div>
+                    <button id="create-assignment-btn" class="btn btn-primary">Create New Assignment</button>
+                    <div id="existing-assignments-list" style="margin-top: 1.5rem;">
+                        <h4>Existing Assignments:</h4>
+                        <ul class="content-list">
+                            <li>Select a course to view assignments.</li>
+                        </ul>
+                    </div>
+                    <!-- Assignment Creation Form (perhaps in a modal) -->
+                    <!-- <form id="create-assignment-form"> ... </form> -->
+                </div>
+                <hr style="margin: 2rem 0;">
+                <div class="content-block">
+                    <h3>Review Submissions</h3>
+                    <div class="form-group inline">
+                        <label for="submission-assignment-filter">Filter by Assignment:</label>
+                        <select id="submission-assignment-filter">
+                            <option value="">Select Assignment...</option>
+                        </select>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Submitted On</th>
+                                <th>Status</th>
+                                <th>Grade</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="submissions-table-body">
+                            <tr>
+                                <td colspan="5">Select an assignment to view submissions.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="faculty-progress" class="dashboard-section">
+                <h2>Student Progress Analytics</h2>
+                <div class="content-block">
+                    <h3>Class Performance Overview</h3>
+                    <select id="analytics-course-select">
+                        <option value="">Select Course...</option>
+                    </select>
+                    <button id="load-analytics-btn" class="btn btn-secondary" disabled>Load Analytics</button>
+                    <div id="faculty-analytics-container" style="margin-top:1rem;">
+                        <p>Select a course and click 'Load Analytics'.</p>
+                        <!-- Placeholder for charts/data -->
+                        <!-- <img src="https://via.placeholder.com/600x300?text=Faculty+Analytics+Dashboard+Placeholder" alt="Analytics Placeholder" style="display: block; margin-top: 10px;"> -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- ===== End Main Dashboard Area ===== -->
+
+    <!-- Utility Script (adjust path) -->
+    <script src="../utils.js"></script> <!-- Make sure path is correct -->
+    <!-- Faculty Specific Script (adjust path) -->
+    <script src="faculty.js"></script> <!-- Make sure path is correct -->
+
+    <!-- Authentication Check & Setup Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUserStr = localStorage.getItem('currentUser');
+            const userNameDisplay = document.getElementById('user-name-display');
+            const logoutButton = document.getElementById('logout-button');
+
+            if (!currentUserStr) {
+                console.log("No user found in localStorage. Redirecting to login.");
+                window.location.href = '/login.html'; // Adjust path if needed
+                return;
+            }
+
+            try {
+                const currentUser = JSON.parse(currentUserStr);
+
+                if (currentUser.role !== 'faculty') {
+                    console.warn(`User role (${currentUser.role}) does not match page (faculty). Redirecting.`);
+                    localStorage.removeItem('currentUser');
+                    window.location.href = '/login.html';
+                    return;
+                }
+
+                if (userNameDisplay) {
+                    userNameDisplay.textContent = `Welcome, ${currentUser.name || currentUser.id}!`;
+                }
+
+                if (logoutButton) {
+                    logoutButton.addEventListener('click', () => {
+                        console.log("Logging out...");
+                        localStorage.removeItem('currentUser');
+                        window.location.href = '/login.html';
+                    });
+                }
+
+                // Initialize faculty dashboard functionality
+                if (typeof initializeFacultyDashboard === 'function') {
+                    // Make sure faculty.js has loaded and defined the function
+                    initializeFacultyDashboard(currentUser); // Pass user data
+                } else {
+                    console.error("initializeFacultyDashboard function not found! Check faculty.js.");
+                }
+
+            } catch (error) {
+                console.error("Error parsing user data or initializing faculty dashboard:", error);
+                localStorage.removeItem('currentUser'); // Clear corrupted data
+                window.location.href = '/login.html';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

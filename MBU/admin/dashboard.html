@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Campus Bridge</title>
+    <!-- Common Styles (adjust path) -->
+    <link rel="stylesheet" href="../common_styles.css"> <!-- Ensure path is correct -->
+    <!-- Admin Specific Styles (adjust path) -->
+    <link rel="stylesheet" href="admin.css"> <!-- Ensure path is correct -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="app-active">
+
+    <!-- ===== Application Header (Common) ===== -->
+    <header class="app-header">
+        <h1>Campus Bridge</h1>
+        <div class="user-info">
+            <span id="user-name-display">Welcome, Admin!</span>
+            <button id="logout-button" class="btn btn-sm btn-danger">Logout</button>
+        </div>
+    </header>
+
+    <!-- ===== Main Dashboard Area (Admin Specific) ===== -->
+    <!-- Structure defined directly here -->
+    <div id="admin-dashboard" class="dashboard admin-dashboard" style="display: flex;">
+        <aside id="sidebar" class="sidebar"> <!-- Added ID -->
+            <h2>Admin Panel</h2>
+            <nav>
+                <ul>
+                    <!-- !!! ADDED data-target ATTRIBUTES !!! -->
+                    <li><a href="#admin-home" data-target="admin-home" class="active-link">Dashboard Home</a></li>
+                    <li><a href="#admin-users" data-target="admin-users">User Management</a></li>
+                    <li><a href="#admin-courses" data-target="admin-courses">Course Management</a></li>
+                    <li><a href="#admin-analytics" data-target="admin-analytics">Aggregate Metrics</a></li>
+                    <li><a href="#admin-schedule" data-target="admin-schedule">Schedule Events</a></li>
+                    <li><a href="#admin-reports" data-target="admin-reports">Export Reports</a></li>
+                    <li><a href="#admin-settings" data-target="admin-settings">Platform Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main id="main-content" class="main-content"> <!-- Added ID -->
+            <section id="admin-home" class="dashboard-section active">
+                <h2>Admin Dashboard</h2>
+                <p>Oversee platform activities, manage users, courses, and generate reports.</p>
+                <!-- Placeholder for Key Metrics -->
+                <div class="quick-stats" style="margin-top: 1.5rem;">
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <p><span id="metric-total-users">--</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Students</h3>
+                        <p><span id="metric-active-students">--</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Submissions Today</h3>
+                        <p><span id="metric-submissions-today">--</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Courses</h3>
+                        <p><span id="metric-total-courses">--</span></p>
+                    </div>
+                </div>
+            </section>
+            <section id="admin-users" class="dashboard-section">
+                <h2>User Management</h2>
+                <div class="content-block action-bar"> <!-- Added class for styling -->
+                    <button id="admin-add-user-btn" class="btn btn-primary">Add New User</button>
+                    <button id="admin-bulk-upload-btn" class="btn btn-secondary">Bulk Upload Users</button>
+                </div>
+                <div class="content-block filter-bar"> <!-- Added class for styling -->
+                    <input type="text" id="admin-user-search" placeholder="Search Users (Name, ID, Email)">
+                    <select id="admin-user-role-filter">
+                        <option value="">Filter by Role...</option>
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <button id="admin-user-search-btn" class="btn btn-secondary">Search</button>
+                </div>
+                <div class="content-block table-container"> <!-- Added class -->
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-users-table-body">
+                            <tr>
+                                <td colspan="6">Loading users...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="admin-courses" class="dashboard-section">
+                <h2>Course Management (Admin)</h2>
+                <div class="content-block action-bar">
+                    <button id="admin-add-course-btn" class="btn btn-primary">Add New Course</button>
+                </div>
+                <div class="content-block filter-bar">
+                    <input type="text" id="admin-course-search" placeholder="Search Courses (Code, Title)">
+                    <button id="admin-course-search-btn" class="btn btn-secondary">Search</button>
+                </div>
+                <div class="content-block table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Title</th>
+                                <th>Faculty Assigned</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-courses-table-body">
+                            <tr>
+                                <td colspan="4">Loading courses...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="admin-analytics" class="dashboard-section">
+                <h2>Aggregate Metrics & Leaderboards</h2>
+                <div class="content-block">
+                    <h3>Platform Usage Stats</h3>
+                    <p>Total Users: <span id="metric-total-users-display">--</span></p>
+                    <p>Active Students: <span id="metric-active-students-display">--</span></p>
+                    <p>Code Submissions Today: <span id="metric-submissions-today-display">--</span></p>
+                    <!-- Link IDs on home and here need to be unique if they coexist -->
+                </div>
+                <div class="content-block">
+                    <h3>Coding Leaderboard (Top 10)</h3>
+                    <ol id="admin-leaderboard">
+                        <li>Loading...</li>
+                    </ol>
+                </div>
+                <div class="content-block">
+                    <h3>Course Activity Overview</h3>
+                    <div id="admin-course-activity-chart">
+                        <p>(Course activity chart loading...)</p>
+                    </div>
+                </div>
+            </section>
+            <section id="admin-schedule" class="dashboard-section">
+                <h2>Schedule Mock Tests & Contests</h2>
+                <div class="content-block">
+                    <form id="schedule-event-form">
+                        <h3>Schedule New Event</h3>
+                        <div class="form-group"><label for="event-type">Event Type:</label><select id="event-type"
+                                name="eventType" required>
+                                <option value="">-- Select Type --</option>
+                                <option value="test">Mock Placement Test</option>
+                                <option value="contest">Coding Contest</option>
+                            </select></div>
+                        <div class="form-group"><label for="event-title">Event Title:</label><input type="text"
+                                id="event-title" name="eventTitle" placeholder="e.g., Weekly Coding Challenge #5"
+                                required></div>
+                        <div class="form-group"><label for="event-datetime">Date & Time:</label><input
+                                type="datetime-local" id="event-datetime" name="eventDatetime" required></div>
+                        <div class="form-group"><label for="event-duration">Duration (minutes):</label><input
+                                type="number" id="event-duration" name="eventDuration" placeholder="e.g., 120" min="1">
+                        </div>
+                        <div class="form-group"><label for="event-description">Description / Rules:</label><textarea
+                                id="event-description" name="eventDescription"
+                                placeholder="Describe the event and its rules" rows="4"></textarea></div>
+                        <button type="submit" class="btn btn-primary">Schedule Event</button>
+                        <div id="schedule-event-message" class="form-message" style="display: none;"></div>
+                    </form>
+                </div>
+                <hr style="margin: 2rem 0;">
+                <div class="content-block">
+                    <h3>Upcoming/Past Events</h3>
+                    <div id="admin-events-list">
+                        <p>Loading scheduled events...</p>
+                    </div>
+                </div>
+            </section>
+            <section id="admin-reports" class="dashboard-section">
+                <h2>Export Performance Reports</h2>
+                <div class="content-block">
+                    <p>Generate reports for offline analysis.</p>
+                    <form id="export-report-form">
+                        <div class="form-group">
+                            <label for="report-type">Report Type:</label>
+                            <select id="report-type" name="reportType">
+                                <option value="">-- Select Report --</option>
+                                <option value="student_performance">Student Performance</option>
+                                <option value="course_activity">Course Activity</option>
+                                <option value="attendance_summary">Attendance Summary</option>
+                                <option value="user_list">User List</option>
+                            </select>
+                        </div>
+                        <!-- Add date range or course filters if needed -->
+                        <button type="submit" class="btn btn-primary" disabled>Generate & Export Report (CSV)</button>
+                        <div id="export-report-message" class="form-message" style="display: none;"></div>
+                    </form>
+                </div>
+            </section>
+            <section id="admin-settings" class="dashboard-section">
+                <h2>Platform Settings</h2>
+                <p>Configure platform-wide options. (Placeholder)</p>
+                <!-- Example Setting -->
+                <div class="content-block">
+                    <form id="platform-settings-form">
+                        <div class="form-group">
+                            <label for="setting-maintenance-mode">Maintenance Mode:</label>
+                            <input type="checkbox" id="setting-maintenance-mode" name="maintenanceMode"> Enable
+                        </div>
+                        <div class="form-group">
+                            <label for="setting-default-role">Default New User Role:</label>
+                            <select id="setting-default-role" name="defaultRole">
+                                <option value="student">Student</option>
+                                <option value="faculty">Faculty</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                        <div id="settings-save-message" class="form-message"></div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- ===== End Main Dashboard Area ===== -->
+
+    <!-- Utility Script (adjust path) -->
+    <script src="../utils.js"></script> <!-- Ensure path is correct -->
+    <!-- Admin Specific Script (adjust path) -->
+    <script src="admin.js"></script> <!-- Ensure path is correct -->
+
+    <!-- Authentication Check & Setup Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUserStr = localStorage.getItem('currentUser');
+            const userNameDisplay = document.getElementById('user-name-display');
+            const logoutButton = document.getElementById('logout-button');
+
+            if (!currentUserStr) {
+                console.log("No user found in localStorage. Redirecting to login.");
+                window.location.href = '/login.html'; // Adjust path if needed
+                return;
+            }
+
+            try {
+                const currentUser = JSON.parse(currentUserStr);
+
+                if (currentUser.role !== 'admin') {
+                    console.warn(`User role (${currentUser.role}) does not match page (admin). Redirecting.`);
+                    localStorage.removeItem('currentUser');
+                    window.location.href = '/login.html';
+                    return;
+                }
+
+                if (userNameDisplay) {
+                    userNameDisplay.textContent = `Welcome, ${currentUser.name || currentUser.id}!`;
+                }
+
+                if (logoutButton) {
+                    logoutButton.addEventListener('click', () => {
+                        console.log("Logging out...");
+                        localStorage.removeItem('currentUser');
+                        window.location.href = '/login.html';
+                    });
+                }
+
+                // Initialize admin dashboard functionality
+                if (typeof initializeAdminDashboard === 'function') {
+                    initializeAdminDashboard(currentUser); // Pass user data
+                } else {
+                    console.error("initializeAdminDashboard function not found! Check admin.js.");
+                }
+
+            } catch (error) {
+                console.error("Error parsing user data or initializing admin dashboard:", error);
+                localStorage.removeItem('currentUser');
+                window.location.href = '/login.html';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

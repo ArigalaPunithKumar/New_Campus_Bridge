@@ -1,0 +1,75 @@
+<!-- Main layout container -->
+<div id="admin-dashboard" class="dashboard admin-dashboard">
+    <nav id="sidebar" class="sidebar">
+        <h2>Admin Menu</h2>
+        <ul>
+            <li><a href="#" data-target="admin-overview" class="active-link">System Overview</a></li>
+            <li><a href="#" data-target="admin-users">User Management</a></li>
+            <li><a href="#" data-target="admin-courses">Course Configuration</a></li>
+            <li><a href="#" data-target="admin-settings">Platform Settings</a></li>
+            <li><a href="#" data-target="admin-logs">System Logs</a></li>
+        </ul>
+    </nav>
+    <main id="main-content" class="main-content">
+        <div class="app-header-placeholder"
+            style="padding: 1rem; background: #eee; margin-bottom: 1.5rem; border-radius: 8px;">
+            <h1>System Overview</h1>
+        </div>
+
+        <!-- Admin Overview -->
+        <section id="admin-overview" class="dashboard-section active">
+            <h2>System Overview</h2>
+            <p>Key metrics and system status.</p>
+            <!-- Placeholder: Stats cards (users, courses, activity) -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <p>500</p> <!-- Placeholder -->
+                </div>
+                <div class="stat-card">
+                    <h3>Active Courses</h3>
+                    <p>20</p> <!-- Placeholder -->
+                </div>
+                <div class="stat-card">
+                    <h3>System Load</h3>
+                    <p>Normal</p> <!-- Placeholder -->
+                </div>
+            </div>
+        </section>
+
+        <!-- User Management -->
+        <section id="admin-users" class="dashboard-section">
+            <h2>User Management</h2>
+            <p>Add, edit, remove users and manage roles.</p>
+            <!-- Placeholder: User table, search, add/edit buttons -->
+            <button class="btn">Add New User</button>
+        </section>
+
+        <!-- Course Configuration -->
+        <section id="admin-courses" class="dashboard-section">
+            <h2>Course Configuration</h2>
+            <p>Manage available courses and categories.</p>
+            <!-- Placeholder: Course management interface -->
+        </section>
+
+        <!-- Platform Settings -->
+        <section id="admin-settings" class="dashboard-section">
+            <h2>Platform Settings</h2>
+            <p>Configure application settings.</p>
+            <!-- Placeholder: Settings form -->
+        </section>
+
+        <!-- System Logs -->
+        <section id="admin-logs" class="dashboard-section">
+            <h2>System Logs</h2>
+            <p>View application logs and events.</p>
+            <!-- Placeholder: Log viewer -->
+        </section>
+    </main>
+</div>
+<script src="admin/admin.js"></script>
+<script>
+    // Simulated currentUser object for initialization
+    const currentUser = { id: 'ADM01', name: 'Admin One', role: 'Admin' };
+    initializeAdminDashboard(currentUser);
+</script>

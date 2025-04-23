@@ -1,0 +1,125 @@
+/* === Admin Dashboard Specific Styles === */
+
+.admin-dashboard {
+    --theme-color: #16a085;
+    /* Teal */
+    --theme-color-light: #e0f2f1;
+}
+
+.admin-dashboard .sidebar {
+    background-color: #f8fdfc;
+    /* Very light teal tint */
+}
+
+.admin-dashboard .sidebar h2 {
+    color: var(--theme-color);
+}
+
+.admin-dashboard .sidebar nav ul li a:hover,
+.admin-dashboard .sidebar nav ul li a.active-link {
+    color: var(--theme-color);
+    border-left-color: var(--theme-color);
+    background-color: var(--theme-color-light);
+}
+
+.admin-dashboard .dashboard-section h2 {
+    color: var(--theme-color);
+}
+
+/* Mobile Specific overrides for admin theme */
+@media (max-width: 768px) {
+    .admin-dashboard .sidebar nav ul li a:hover {
+        border-bottom-color: var(--theme-color-light);
+    }
+
+    .admin-dashboard .sidebar nav ul li a.active-link {
+        border-bottom-color: var(--theme-color);
+        color: var(--theme-color);
+    }
+}
+
+/* Styles for components primarily used in Admin Dashboard */
+
+/* Leaderboard List */
+#admin-leaderboard {
+    /* Inherits general ol/li styling, specific ::before styles remain */
+    list-style: none;
+    padding-left: 0;
+    counter-reset: leaderboard-counter;
+}
+
+#admin-leaderboard li {
+    counter-increment: leaderboard-counter;
+    padding: 12px 0 12px 2.5rem;
+    /* Space for counter */
+    border-bottom: 1px dotted #e0e0e0;
+    font-size: 1rem;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+#admin-leaderboard li:hover {
+    background-color: #f8f9fa;
+}
+
+#admin-leaderboard li:last-child {
+    border-bottom: none;
+}
+
+#admin-leaderboard li::before {
+    content: counter(leaderboard-counter);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color);
+    /* Default counter color */
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+#admin-leaderboard li:nth-child(1)::before {
+    background-color: #ffd700;
+    /* Gold */
+    color: #333;
+}
+
+#admin-leaderboard li:nth-child(2)::before {
+    background-color: #c0c0c0;
+    /* Silver */
+    color: #333;
+}
+
+#admin-leaderboard li:nth-child(3)::before {
+    background-color: #cd7f32;
+    /* Bronze */
+    color: white;
+}
+
+/* Style admin search/filter controls */
+#admin-user-search,
+#admin-course-search {
+    margin-right: 10px;
+    min-width: 250px;
+    /* Give search more space */
+}
+
+#admin-user-role-filter {
+    margin-right: 10px;
+}
+
+/* Hide all dashboard sections by default */
+.dashboard-section {
+    display: none;
+}
+
+/* Show only active dashboard section */
+.dashboard-section.active {
+    display: block;
+}

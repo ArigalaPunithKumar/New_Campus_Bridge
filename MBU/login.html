@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Bridge - Login</title>
+    <!-- Common styles used by login forms/buttons -->
+    <link rel="stylesheet" href="common_styles.css">
+    <!-- Login/Auth specific styles -->
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ===== Authentication Container ===== -->
+    <div id="auth-container" class="auth-container active"> <!-- Start visible -->
+
+        <!-- Login Form -->
+        <div id="login-view" class="auth-view active"> <!-- Start with login active -->
+            <form id="login-form" class="auth-form">
+                <h2>Campus Bridge Login</h2>
+                <p>Access your integrated learning environment.</p>
+                <div class="form-group">
+                    <label for="login-role">Login As:</label>
+                    <select id="login-role" name="role" required>
+                        <option value="student" selected>Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="login-email">Email / Username / ID</label>
+                    <input type="text" id="login-email" name="identifier" required placeholder="Enter your ID or Email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required
+                        placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div id="login-message" class="form-message error-message" style="display: none;"></div>
+                <div class="auth-links">
+                    <a href="#" id="show-forgot-password">Forgot Password?</a>
+                    <span>|</span>
+                    <a href="#" id="show-signup">Don't have an account? Sign Up</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signup-view" class="auth-view"> <!-- Hidden initially -->
+            <form id="signup-form" class="auth-form">
+                <h2>Create Account</h2>
+                <p>Join Campus Bridge today!</p>
+                <div class="form-group">
+                    <label for="signup-role">Register As:</label>
+                    <select id="signup-role" name="role" required>
+                        <option value="student" selected>Student</option>
+                        <option value="faculty">Faculty</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="signup-id">Student/Faculty ID</label>
+                    <input type="text" id="signup-id" name="userid" required placeholder="Enter your unique ID">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required
+                        placeholder="Create a password (min 8 chars)">
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" name="confirm_password" required
+                        placeholder="Confirm your password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <div id="signup-message" class="form-message error-message" style="display: none;"></div>
+                <div class="auth-links">
+                    <a href="#" id="back-to-login-from-signup">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgot-password-view" class="auth-view"> <!-- Hidden initially -->
+            <form id="forgot-password-form" class="auth-form">
+                <h2>Reset Password</h2>
+                <p>Enter your email to receive reset instructions.</p>
+                <div class="form-group">
+                    <label for="forgot-email">Email</label>
+                    <input type="email" id="forgot-email" name="email" required
+                        placeholder="Enter your registered email">
+                </div>
+                <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                <div id="forgot-message" class="form-message" style="display: none;"></div>
+                <div class="auth-links">
+                    <a href="#" id="back-to-login-from-forgot">Back to Login</a>
+                </div>
+            </form>
+        </div>
+    </div> <!-- End Auth Container -->
+
+    <!-- ===== Modal (Could be used for Terms/Privacy on signup, etc.) ===== -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="modal-close-button" class="close-button">×</span>
+            <h3 id="modal-title">Modal Title</h3>
+            <div id="modal-body">
+                Modal content goes here...
+            </div>
+        </div>
+    </div>
+
+    <!-- Utility Script (Optional, if login.js needs shared functions) -->
+    <script src="utils.js"></script>
+    <!-- Login Specific Script -->
+    <script src="login.js"></script>
+
+</body>
+
+</html>

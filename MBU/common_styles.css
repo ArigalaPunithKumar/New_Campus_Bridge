@@ -1,0 +1,850 @@
+/* --- Global Styles & Variables --- */
+:root {
+    /* Colors */
+    --primary-hue: 225;
+    --accent-hue: 45;
+    --primary-color: hsl(var(--primary-hue), 60%, 58%);
+    --primary-color-dark: hsl(var(--primary-hue), 60%, 50%);
+    --primary-color-light: hsl(var(--primary-hue), 70%, 94%);
+    --secondary-color: hsl(var(--primary-hue), 50%, 75%);
+    --accent-color: hsl(var(--accent-hue), 90%, 55%);
+    --accent-color-dark: hsl(var(--accent-hue), 90%, 48%);
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --background-color: #fbfcfd;
+    --surface-color: #ffffff;
+    --surface-alt-color: #f5f7fa;
+    --text-color: #343a40;
+    --text-muted-color: #6c757d;
+    --text-on-primary: #ffffff;
+    --text-on-accent: #333333;
+    --border-color: #dee2e6;
+
+    /* Fonts */
+    --code-font: 'Roboto Mono', monospace;
+    --body-font: 'Poppins', sans-serif;
+    --base-font-size: 16px;
+
+    /* Layout */
+    --border-radius-sm: 4px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    --box-shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.09);
+    --transition-speed: 0.25s;
+    --transition-easing: ease-in-out;
+    --header-height: 70px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--base-font-size);
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed) ease;
+    /* Default for login page - center content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Class for dashboard pages */
+body.app-active {
+    display: block;
+    justify-content: initial;
+    align-items: initial;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) var(--transition-easing);
+}
+
+a:hover {
+    color: var(--primary-color-dark);
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Loading Spinner --- */
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Buttons (Common) --- */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) var(--transition-easing),
+        transform var(--transition-speed) var(--transition-easing),
+        box-shadow 0.2s var(--transition-easing);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color-dark);
+    box-shadow: 0 6px 12px hsla(var(--primary-hue), 65%, 55%, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-on-primary);
+}
+
+.btn-secondary:hover {
+    background-color: hsl(var(--primary-hue), 50%, 60%);
+    box-shadow: 0 6px 12px hsla(var(--primary-hue), 50%, 70%, 0.3);
+}
+
+.btn-accent {
+    background-color: var(--accent-color);
+    color: var(--text-on-accent);
+}
+
+.btn-accent:hover {
+    background-color: var(--accent-color-dark);
+    box-shadow: 0 6px 12px hsla(var(--accent-hue), 90%, 55%, 0.3);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+    box-shadow: 0 6px 12px rgba(46, 204, 113, 0.3);
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #e67e22;
+    box-shadow: 0 6px 12px rgba(243, 156, 18, 0.3);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+    box-shadow: 0 6px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+/* --- Forms (Common) --- */
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    color: var(--text-muted-color);
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="date"],
+.form-group input[type="datetime-local"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-family: var(--body-font);
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    transition: border-color var(--transition-speed) var(--transition-easing), box-shadow var(--transition-speed) var(--transition-easing);
+}
+
+.form-group input[type="file"] {
+    padding: 8px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px hsla(var(--primary-hue), 65%, 55%, 0.2);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-message {
+    margin-top: 1rem;
+    padding: 12px 18px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid transparent;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease, margin-top 0.4s ease, padding 0.4s ease;
+}
+
+.form-message.show {
+    opacity: 1;
+    max-height: 100px;
+    margin-top: 1rem;
+    padding: 12px 18px;
+}
+
+.success-message {
+    background-color: hsl(145, 63%, 94%);
+    color: hsl(145, 63%, 30%);
+    border-color: hsl(145, 63%, 80%);
+}
+
+.error-message {
+    background-color: hsl(0, 84%, 96%);
+    color: hsl(0, 74%, 42%);
+    border-color: hsl(0, 84%, 85%);
+}
+
+/* --- Application Header (Common) --- */
+.app-header {
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    background: linear-gradient(90deg, var(--primary-color) 0%, hsl(var(--primary-hue), 60%, 45%) 100%);
+    color: var(--text-on-primary);
+    height: var(--header-height, 70px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.app-header h1 {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info span {
+    margin-right: 1.5rem;
+    font-weight: 500;
+}
+
+#logout-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 8px 15px;
+}
+
+#logout-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Dashboard Layout & Sidebar Toggle --- */
+.dashboard {
+    display: flex;
+    min-height: calc(100vh - var(--header-height, 70px));
+}
+
+/* Update sidebar styles using the ID or class */
+#sidebar,
+.sidebar {
+    width: var(--sidebar-width, 260px);
+    background-color: var(--surface-color);
+    padding: 1.5rem 1rem;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    height: calc(100vh - var(--header-height, 70px));
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 900;
+    border-right: 1px solid var(--border-color);
+}
+
+/* Restore sidebar H2 visibility and original styles */
+#sidebar h2,
+.sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem 1rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted-color);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Refine sidebar link appearance */
+#sidebar ul li a {
+    display: block;
+    padding: 12px 1rem 12px 1.5rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-muted-color);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    transition: background-color var(--transition-speed) var(--transition-easing),
+        color var(--transition-speed) var(--transition-easing),
+        border-left-color var(--transition-speed) var(--transition-easing),
+        padding-left var(--transition-speed) var(--transition-easing);
+    border-left: 5px solid transparent;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Enhanced Hover State */
+#sidebar ul li a:hover {
+    background-color: var(--primary-color-light);
+    color: var(--primary-color-dark);
+    padding-left: 1.7rem;
+    border-left-color: var(--secondary-color);
+}
+
+/* Enhanced Active State */
+#sidebar ul li a.active-link {
+    background-color: var(--primary-color);
+    color: var(--text-on-primary);
+    font-weight: 600;
+    border-left-color: var(--accent-color);
+    border-left-width: 5px;
+    padding-left: 1.5rem;
+}
+
+#sidebar ul li a.active-link:hover {
+    background-color: var(--primary-color-dark);
+    border-left-color: var(--accent-color-dark);
+    padding-left: 1.5rem;
+}
+
+/* Update main content styles using the ID or class */
+#main-content,
+.main-content {
+    flex-grow: 1;
+    padding: 2rem 2.5rem;
+    overflow-y: auto;
+}
+
+/* --- Data Table (Common) --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.8rem;
+    font-size: 0.95rem;
+    border: 1px solid #dee2e6;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.data-table th,
+.data-table td {
+    padding: 16px 18px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.data-table thead th {
+    background-color: var(--surface-alt-color);
+    font-weight: 600;
+    color: var(--text-muted-color);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.6px;
+    border-bottom-width: 2px;
+    border-top: 1px solid #dee2e6;
+}
+
+.data-table tbody tr {
+    transition: background-color 0.2s var(--transition-easing);
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: var(--surface-alt-color);
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--primary-color-light);
+}
+
+.data-table td {
+    color: var(--text-color);
+}
+
+/* Status indicators */
+.data-table .status-submitted,
+.data-table .status-active,
+.data-table .status-graded {
+    font-weight: 600;
+}
+
+.data-table .status-submitted {
+    color: var(--success-color);
+}
+
+.data-table .status-pending {
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
+.data-table .status-graded {
+    color: var(--primary-color);
+}
+
+.data-table .status-active {
+    color: var(--success-color);
+}
+
+.data-table .status-inactive {
+    color: var(--danger-color);
+}
+
+/* --- Animations (Common) --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- Responsiveness (Common Base) --- */
+@media (max-width: 992px) {
+    :root {
+        --base-font-size: 15px;
+    }
+
+    .sidebar {
+        width: 230px;
+    }
+
+    .main-content {
+        padding: 2rem;
+    }
+
+    .app-header {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --base-font-size: 14px;
+        --header-height: 60px;
+    }
+
+    body.app-active {
+        display: block;
+    }
+
+    .dashboard {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-around;
+        padding: 0.5rem 0;
+        position: static;
+        overflow-y: visible;
+        background-color: var(--surface-color);
+        border-bottom: 1px solid #e9ecef;
+        z-index: 950;
+    }
+
+    .sidebar h2 {
+        display: none;
+    }
+
+    .sidebar nav {
+        width: 100%;
+    }
+
+    .sidebar nav ul {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .sidebar nav ul li {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .sidebar nav ul li a {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+        margin-bottom: 0;
+        border-left: none;
+        border-bottom: 4px solid transparent;
+        border-radius: 0;
+        color: var(--text-muted-color);
+        text-align: center;
+        flex-grow: 1;
+        transition: background-color 0.2s ease, color 0.2s ease, border-bottom-color 0.2s ease;
+    }
+
+    .sidebar nav ul li a:hover {
+        padding-left: 8px;
+        background-color: var(--surface-alt-color);
+        color: var(--primary-color);
+        border-bottom-color: var(--secondary-color);
+    }
+
+    .sidebar nav ul li a.active-link {
+        background-color: transparent;
+        color: var(--primary-color-dark);
+        font-weight: 600;
+        border-bottom-color: var(--accent-color);
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .app-header {
+        padding: 0 1rem;
+        height: var(--header-height);
+    }
+
+    .app-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .user-info span {
+        display: none;
+    }
+
+    #logout-button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --base-font-size: 13px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px 18px;
+    }
+
+    .btn-sm {
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .sidebar nav ul li {
+        flex-basis: 32%;
+    }
+
+    .sidebar nav ul li a {
+        font-size: 0.75rem;
+        padding: 8px 5px;
+    }
+
+    .app-header h1 {
+        font-size: 1.4rem;
+    }
+
+    #logout-button {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .dashboard-section {
+        padding: 1.5rem;
+    }
+
+    .content-block {
+        padding: 1.2rem;
+    }
+}
+
+/* --- Quick Stats Cards --- */
+.quick-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    flex: 1;
+    min-width: 180px;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    border: 1px solid var(--border-color);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.stat-card p {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+/* Specific styling for streak */
+.stat-card p .fa-fire {
+    /* If using FontAwesome */
+    color: var(--warning-color);
+    margin-right: 0.3rem;
+}
+
+.stat-card span {
+    font-size: 0.85rem;
+    color: var(--text-muted-color);
+}
+
+.stat-card span a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+/* --- Dashboard Sections (Ensure Visibility Toggle) --- */
+#main-content>.dashboard-section {
+    display: none !important;
+    /* Hide sections by default - Increased Specificity & !important for diagnostics */
+    /* Remove background/padding/shadow from the section wrapper itself */
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 2rem;
+    box-shadow: none;
+    /* Add animation for fade-in */
+    animation: fadeIn 0.4s var(--transition-easing) forwards;
+}
+
+#main-content>.dashboard-section.active {
+    display: block !important;
+    /* Show ONLY the active section - Increased Specificity & !important */
+}
+
+/* Keep styling for headings within sections/blocks */
+.dashboard-section h2,
+.content-block h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    color: var(--primary-color-dark);
+}
+
+.dashboard-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    /* Ensure space below main section titles */
+}
+
+.content-block h3 {
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+/* Add this to common_styles.css OR student.css */
+
+/* Common Dashboard Layout Visibility */
+.dashboard .main-content .dashboard-section {
+    display: none;
+    /* Hide all sections by default */
+}
+
+.dashboard .main-content .dashboard-section.active {
+    display: block;
+    /* Show only the section with the .active class */
+    /* Optional: Add a simple fade-in animation */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Optional Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

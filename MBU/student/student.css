@@ -1,0 +1,691 @@
+/* === Student Dashboard Specific Styles === */
+
+.student-dashboard {
+    /* Define theme variables within the scope */
+    --theme-color: var(--primary-color);
+    --theme-color-light: var(--primary-color-light);
+    --theme-color-darker: #0056b3;
+    /* Darker Blue for emphasis */
+    --theme-bg-light: #e7f5ff;
+    /* Light Blue background */
+    --theme-bg-hover: #cce7ff;
+    /* Slightly darker blue for hover */
+    --theme-text-muted: #31708f;
+    /* Muted Blue text */
+}
+
+.student-dashboard .sidebar {
+    background-color: var(--theme-bg-light);
+}
+
+.student-dashboard .sidebar h2 {
+    color: var(--theme-color-darker);
+}
+
+/* --- Sidebar Link Styling --- */
+.student-dashboard .sidebar nav ul li a {
+    color: var(--theme-text-muted);
+    border-left-color: transparent;
+    /* Inherits transitions from common_styles.css, ensure 'transform' is included there if not already */
+    /* transition: background-color var(--transition-speed) var(--transition-easing),
+                color var(--transition-speed) var(--transition-easing),
+                border-left-color var(--transition-speed) var(--transition-easing),
+                padding-left var(--transition-speed) var(--transition-easing),
+                transform 0.1s ease; */
+    /* Add transform transition */
+}
+
+/* Enhanced Hover State */
+.student-dashboard .sidebar nav ul li a:hover {
+    background-color: var(--theme-bg-hover);
+    color: var(--theme-color-darker);
+    border-left-color: var(--theme-color);
+    /* Use theme color for border */
+    /* padding-left: 1.7rem; */
+    /* Keep consistent padding or use common style */
+}
+
+/* Enhanced Active State (Current Page) */
+.student-dashboard .sidebar nav ul li a.active-link {
+    background-color: var(--theme-color);
+    /* Use main theme color */
+    color: var(--text-on-primary);
+    /* White text on primary color */
+    font-weight: 600;
+    border-left-color: var(--accent-color);
+    /* Use accent color for active border */
+    /* padding-left: 1.5rem; */
+    /* Keep consistent padding or use common style */
+}
+
+.student-dashboard .sidebar nav ul li a.active-link:hover {
+    background-color: var(--primary-color-dark);
+    /* Slightly darker on hover */
+    border-left-color: var(--accent-color-dark);
+    /* padding-left: 1.5rem; */
+}
+
+/* Subtle "Press" Animation on Click */
+.student-dashboard .sidebar nav ul li a:active {
+    transform: translateY(1px) scale(0.99);
+    /* Move down slightly, shrink slightly */
+    background-color: var(--primary-color-dark);
+    /* Can use a slightly darker shade on press */
+    color: var(--text-on-primary);
+    transition-duration: 0.05s;
+    /* Make the press effect quick */
+}
+
+
+.student-dashboard .dashboard-section h2 {
+    color: var(--theme-color-darker);
+    /* Use darker theme color for section titles */
+}
+
+/* Mobile Specific overrides for student theme */
+@media (max-width: 768px) {
+    .student-dashboard .sidebar nav ul li a {
+        /* Reset border-left for mobile view if needed, handled by common styles */
+        /* border-left: none; */
+        /* Ensure transitions still apply */
+        /* transition: background-color 0.2s ease, color 0.2s ease, border-bottom-color 0.2s ease, transform 0.1s ease; */
+    }
+
+    .student-dashboard .sidebar nav ul li a:hover {
+        border-bottom-color: var(--theme-color-light);
+        /* Use theme var */
+        background-color: var(--theme-bg-light);
+        /* Use light theme bg for hover */
+        color: var(--theme-color-darker);
+        /* Reset any desktop-specific hover changes if necessary */
+        /* border-left-color: transparent; */
+        /* padding-left: 8px; */
+    }
+
+    .student-dashboard .sidebar nav ul li a.active-link {
+        border-bottom-color: var(--theme-color);
+        /* Use theme var */
+        color: var(--theme-color-darker);
+        /* Ensure color matches border */
+        background-color: transparent;
+        /* Mobile active usually just uses border */
+        font-weight: 600;
+    }
+
+    /* Mobile click effect - might be less noticeable/desirable */
+    .student-dashboard .sidebar nav ul li a:active {
+        transform: translateY(1px);
+        /* Simpler effect for mobile */
+        background-color: var(--theme-bg-hover);
+        /* Use hover background */
+        transition-duration: 0.05s;
+    }
+}
+
+/* Styles for components primarily used in Student Dashboard */
+
+/* Quick Stats (Using theme colors) */
+.student-dashboard .quick-stats {
+    /* Add dashboard scope */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.student-dashboard .stat-card {
+    /* Add dashboard scope */
+    background-color: var(--surface-color);
+    /* Use surface color */
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    /* Use standard border color */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-dashboard .stat-card:hover {
+    /* Add dashboard scope */
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow);
+}
+
+.student-dashboard .stat-card h3 {
+    /* Add dashboard scope */
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted-color);
+    text-transform: uppercase;
+}
+
+.student-dashboard .stat-card p {
+    /* Add dashboard scope */
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--theme-color-darker);
+    /* Use darker theme color */
+    margin-bottom: 0.3rem;
+}
+
+.student-dashboard .stat-card span {
+    /* Add dashboard scope */
+    font-size: 0.85rem;
+    color: var(--text-muted-color);
+}
+
+.student-dashboard .stat-card span a {
+    /* Add dashboard scope */
+    color: var(--theme-color);
+    /* Use theme color for links */
+}
+
+/* Course List & Attendance Summary (Using theme colors) */
+.student-dashboard .course-list,
+/* Add dashboard scope */
+.student-dashboard .attendance-summary {
+    /* Add dashboard scope */
+    list-style: none;
+    padding-left: 0;
+}
+
+.student-dashboard .course-list li,
+/* Add dashboard scope */
+.student-dashboard .attendance-summary p {
+    /* Add dashboard scope */
+    padding: 14px 8px;
+    border-bottom: 1px dashed #e0e0e0;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.student-dashboard .course-list li:hover,
+/* Add dashboard scope */
+.student-dashboard .attendance-summary p:hover {
+    /* Add dashboard scope */
+    background-color: var(--surface-alt-color);
+    /* Subtle hover */
+}
+
+.student-dashboard .course-list li:last-child,
+/* Add dashboard scope */
+.student-dashboard .attendance-summary p:last-child {
+    /* Add dashboard scope */
+    border-bottom: none;
+}
+
+.student-dashboard .course-list li {
+    /* Add dashboard scope */
+    background-color: var(--surface-alt-color);
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.8rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid #e0e0e0;
+}
+
+.student-dashboard .course-list li strong {
+    /* Add dashboard scope */
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--theme-color-darker);
+    /* Use darker theme color */
+}
+
+.student-dashboard .course-list li a {
+    /* Add dashboard scope */
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+.student-dashboard .attendance-summary strong {
+    /* Add dashboard scope */
+    color: var(--primary-color-dark);
+    font-weight: 600;
+}
+
+
+/* Compiler Area */
+.student-dashboard .compiler-container h3 {
+    /* Add dashboard scope */
+    margin-bottom: 1.8rem;
+    color: var(--theme-color-darker);
+    /* Theme color */
+}
+
+.student-dashboard .compiler-controls {
+    /* Add dashboard scope */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.student-dashboard .compiler-controls label {
+    /* Add dashboard scope */
+    font-weight: 600;
+    color: var(--text-muted-color);
+    margin-right: 0.2rem;
+}
+
+.student-dashboard .compiler-controls select {
+    /* Add dashboard scope */
+    min-width: 130px;
+    flex-grow: 1;
+    max-width: 200px;
+}
+
+.student-dashboard .compiler-controls .btn {
+    /* Add dashboard scope */
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.student-dashboard #code-editor,
+/* Add dashboard scope */
+.student-dashboard #code-input {
+    /* Add dashboard scope */
+    width: 100%;
+    font-family: var(--code-font);
+    font-size: 1rem;
+    background-color: #282c34;
+    /* Keep dark editor theme */
+    color: #abb2bf;
+    border: 1px solid #3a3f4b;
+    border-radius: var(--border-radius-sm);
+    padding: 1.2rem;
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.student-dashboard #code-editor {
+    /* Add dashboard scope */
+    height: 400px;
+}
+
+.student-dashboard #code-input {
+    /* Add dashboard scope */
+    height: 100px;
+}
+
+
+.student-dashboard #code-editor::placeholder,
+/* Add dashboard scope */
+.student-dashboard #code-input::placeholder {
+    /* Add dashboard scope */
+    color: #6a737d;
+    opacity: 0.8;
+}
+
+.student-dashboard .output-area,
+/* Add dashboard scope */
+.student-dashboard .ai-feedback-area,
+/* Add dashboard scope */
+.student-dashboard .input-area {
+    /* Add dashboard scope */
+    margin-top: 1.8rem;
+}
+
+.student-dashboard .output-area h4,
+/* Add dashboard scope */
+.student-dashboard .ai-feedback-area h4,
+/* Add dashboard scope */
+.student-dashboard .input-area h4 {
+    /* Add dashboard scope */
+    color: var(--secondary-color);
+    /* Use secondary color */
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.student-dashboard #output-console {
+    /* Add dashboard scope */
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius-sm);
+    padding: 1.2rem;
+    min-height: 150px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: var(--code-font);
+    font-size: 0.95rem;
+    color: #343a40;
+    line-height: 1.6;
+}
+
+.student-dashboard .ai-box {
+    /* Add dashboard scope */
+    border: 1px solid transparent;
+    border-left-width: 5px;
+    border-radius: var(--border-radius-sm);
+    padding: 1.2rem 1.5rem;
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Specific AI Box themes */
+.student-dashboard #ai-feedback-box {
+    /* Add dashboard scope */
+    border-left-color: var(--secondary-color);
+    background-color: hsl(var(--primary-hue), 70%, 96%);
+    border-color: hsl(var(--primary-hue), 70%, 90%);
+}
+
+.student-dashboard .ai-review {
+    /* Add dashboard scope */
+    border-left-color: var(--success-color);
+    background-color: hsl(145, 63%, 94%);
+    border-color: hsl(145, 63%, 85%);
+}
+
+.student-dashboard .ai-debug {
+    /* Add dashboard scope */
+    border-left-color: var(--danger-color);
+    background-color: hsl(0, 84%, 96%);
+    border-color: hsl(0, 84%, 85%);
+}
+
+.student-dashboard .ai-hint {
+    /* Add dashboard scope */
+    border-left-color: var(--warning-color);
+    background-color: hsl(39, 100%, 95%);
+    border-color: hsl(39, 100%, 85%);
+}
+
+.student-dashboard #ai-rating {
+    /* Add dashboard scope */
+    border-left-color: var(--accent-color);
+    background-color: hsl(var(--accent-hue), 100%, 95%);
+    border-color: hsl(var(--accent-hue), 100%, 85%);
+    font-weight: 600;
+}
+
+
+/* Coding Tracks */
+.student-dashboard .coding-tracks {
+    /* Add dashboard scope */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.student-dashboard .track-card {
+    /* Add dashboard scope */
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: 600;
+    color: var(--theme-color);
+    /* Use theme color */
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.student-dashboard .track-card:hover {
+    /* Add dashboard scope */
+    background-color: var(--theme-color-light);
+    transform: translateY(-3px);
+}
+
+.student-dashboard .track-card:active {
+    /* Add dashboard scope */
+    transform: translateY(1px);
+}
+
+/* Profile/Stats Placeholders */
+.student-dashboard .heatmap-placeholder,
+/* Add dashboard scope */
+.student-dashboard #streak-visualization {
+    /* Add dashboard scope */
+    background-color: var(--surface-alt-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px dashed #ced4da;
+    text-align: center;
+    color: var(--text-muted-color);
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.student-dashboard #heatmap-container img {
+    /* Add dashboard scope */
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+.student-dashboard .badges-container {
+    /* Add dashboard scope */
+    text-align: left;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background-color: var(--surface-alt-color);
+    border-radius: var(--border-radius);
+    border: 1px solid #e9ecef;
+}
+
+.student-dashboard .badge {
+    /* Add dashboard scope */
+    background-color: var(--theme-bg-hover);
+    /* Use theme hover color */
+    color: var(--theme-color-darker);
+    /* Use darker theme color */
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+    /* Ensure badges flow well */
+    margin: 3px;
+}
+
+/* Job Match */
+.student-dashboard .job-match {
+    /* Add dashboard scope */
+    border: 1px solid #e9ecef;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color);
+    /* Give it a background */
+}
+
+.student-dashboard .job-match h4 {
+    /* Add dashboard scope */
+    color: var(--theme-color-darker);
+    /* Use darker theme color */
+    margin-bottom: 0.5rem;
+}
+
+/* --- Attendance Chart Styles (Using theme colors) --- */
+.student-dashboard .attendance-chart-container {
+    /* Add dashboard scope */
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--surface-alt-color);
+    /* Use alt surface */
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    align-items: flex-end;
+    /* Align bars at the bottom */
+    min-height: 250px;
+    /* Ensure container has height */
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+}
+
+.student-dashboard .attendance-bar-item {
+    /* Add dashboard scope */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    /* Allow items to grow and shrink */
+    min-width: 80px;
+    /* Minimum width for each bar item */
+}
+
+.student-dashboard .attendance-bar {
+    /* Add dashboard scope */
+    width: 50px;
+    background-color: var(--theme-color);
+    /* Default bar color (theme blue) */
+    border-radius: 3px 3px 0 0;
+    /* Rounded top */
+    transition: height 0.5s ease-out, background-color 0.3s ease;
+    /* Animate height and color */
+    position: relative;
+    /* For percentage label */
+    margin: 0 auto;
+    /* Center the bar */
+}
+
+/* Different colors based on attendance percentage */
+.student-dashboard .attendance-bar.low {
+    /* Add dashboard scope */
+    background-color: var(--danger-color);
+    /* Red for low */
+}
+
+.student-dashboard .attendance-bar.medium {
+    /* Add dashboard scope */
+    background-color: var(--warning-color);
+    /* Yellow for medium */
+}
+
+.student-dashboard .attendance-bar.high {
+    /* Add dashboard scope */
+    background-color: var(--success-color);
+    /* Green for high */
+}
+
+.student-dashboard .attendance-percentage {
+    /* Add dashboard scope */
+    position: absolute;
+    top: -20px;
+    /* Position above the bar */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #333;
+    background: rgba(255, 255, 255, 0.7);
+    /* Slight background for readability */
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.student-dashboard .attendance-course-name {
+    /* Add dashboard scope */
+    font-size: 0.85em;
+    color: var(--text-muted-color);
+    text-align: center;
+    margin-top: 5px;
+    white-space: normal;
+    /* Allow wrapping */
+    word-wrap: break-word;
+}
+
+/* Responsive Adjustments for Student */
+@media (max-width: 768px) {
+    .student-dashboard .quick-stats {
+        /* Add dashboard scope */
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .student-dashboard .attendance-chart-container {
+        /* Add dashboard scope */
+        gap: 15px;
+    }
+
+    .student-dashboard .attendance-bar {
+        /* Add dashboard scope */
+        width: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .student-dashboard .stat-card p {
+        /* Add dashboard scope */
+        font-size: 1.6rem;
+    }
+
+    .student-dashboard .attendance-chart-container {
+        /* Add dashboard scope */
+        flex-direction: column;
+        /* Stack bars vertically */
+        align-items: stretch;
+        /* Stretch items */
+        min-height: auto;
+    }
+
+    .student-dashboard .attendance-bar-item {
+        /* Add dashboard scope */
+        min-width: 0;
+        /* Reset min-width */
+        flex-direction: row;
+        /* Label next to bar */
+        align-items: center;
+        margin-bottom: 10px;
+        gap: 10px;
+        /* Add gap between elements */
+    }
+
+    .student-dashboard .attendance-bar {
+        /* Add dashboard scope */
+        width: auto;
+        /* Let it take space */
+        flex-grow: 1;
+        /* Allow bar to grow */
+        height: 20px !important;
+        /* Fixed height for horizontal bars */
+        border-radius: 3px;
+    }
+
+    .student-dashboard .attendance-percentage {
+        /* Add dashboard scope */
+        position: static;
+        transform: none;
+        order: 2;
+        /* Percentage after bar */
+        margin-left: 0;
+        /* Reset margin */
+        background: none;
+        /* Remove background */
+        padding: 0;
+        width: 40px;
+        /* Give it some width */
+        text-align: right;
+    }
+
+    .student-dashboard .attendance-course-name {
+        /* Add dashboard scope */
+        order: 1;
+        /* Name before bar */
+        width: 100px;
+        /* Fixed width for name */
+        text-align: right;
+        margin-right: 0;
+        /* Reset margin */
+        margin-top: 0;
+        flex-shrink: 0;
+        /* Prevent name from shrinking */
+    }
+}

@@ -1,0 +1,180 @@
+<!-- Main layout container -->
+<div id="student-dashboard" class="dashboard student-dashboard">
+    <nav id="sidebar" class="sidebar">
+        <h2>Student Menu</h2>
+        <ul>
+            <li><a href="#" data-target="student-home" class="active-link">Dashboard Home</a></li>
+            <li><a href="#" data-target="student-academic">Academic Hub</a></li>
+            <li><a href="#" data-target="student-coding">Coding Zone</a></li>
+            <li><a href="#" data-target="student-profile">My Profile</a></li>
+            <li><a href="#" data-target="student-jobs">Job Match</a></li>
+        </ul>
+    </nav>
+    <main id="main-content" class="main-content">
+        <div class="app-header-placeholder"
+            style="padding: 1rem; background: #eee; margin-bottom: 1.5rem; border-radius: 8px;">
+            <h1>Welcome, Student!</h1>
+        </div>
+
+        <!-- Student Home (Example: Needs dynamic data) -->
+        <section id="student-home" class="dashboard-section active">
+            <h2>Welcome, Student!</h2>
+            <p>Quick overview of your academic and coding activities.</p>
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <h3>Attendance</h3>
+                    <p><span id="student-attendance-stat">--</span>%</p>
+                    <span>Overall</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending Assignments</h3>
+                    <p><span id="student-pending-stat">--</span></p>
+                    <span>Academic & Coding</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Coding Streak</h3>
+                    <p><span id="student-streak-stat">--</span> Days</p>
+                    <span>Keep it up!</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Badges Earned</h3>
+                    <p><span id="student-badges-stat">--</span></p>
+                    <span><a href="#" data-target="student-profile">View Profile</a></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Academic Hub -->
+        <section id="student-academic" class="dashboard-section">
+            <h2>Academic Hub</h2>
+            <div class="content-block">
+                <h3>My Attendance</h3>
+                <div id="attendance-summary" class="attendance-summary">
+                    <p>Loading attendance...</p>
+                </div>
+                <a href="#">View Detailed Attendance</a>
+            </div>
+            <div class="content-block">
+                <h3>My Courses & Materials</h3>
+                <ul id="course-list" class="course-list">
+                    <li>Loading courses...</li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <h3>Assignments</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Assignment</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Grade/Review</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="assignments-table-body">
+                        <tr>
+                            <td colspan="6">Loading assignments...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Student Coding Section -->
+        <section id="student-coding" class="dashboard-section">
+            <h2>Coding Zone</h2>
+            <div class="content-block">
+                <h3>Available Coding Tracks</h3>
+                <div id="coding-tracks" class="coding-tracks">
+                    <p>Loading tracks...</p>
+                </div>
+                <button class="btn btn-secondary" id="enroll-track-btn">Enroll in New Track</button>
+            </div>
+            <div class="content-block compiler-container">
+                <h3>Practice Ground / Online Compiler</h3>
+                <div class="compiler-controls">
+                    <label for="language-select">Language:</label>
+                    <select id="language-select">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="c_cpp">C++</option>
+                        <option value="c">C</option>
+                    </select>
+                    <button id="run-code-btn" class="btn btn-success">Run Code</button>
+                    <button id="ai-review-btn" class="btn btn-primary">AI Review</button>
+                    <button id="ai-debug-btn" class="btn btn-danger">AI Debug</button>
+                    <button id="ai-hint-btn" class="btn btn-warning">AI Hint</button>
+                </div>
+                <div class="editor-area"><textarea id="code-editor" placeholder="Write your code here..."
+                        spellcheck="false"></textarea></div>
+                <div class="input-area" style="margin-top: 10px;">
+                    <h4>Input (Optional):</h4><textarea id="code-input"
+                        placeholder="Provide input for your code here (if needed)..." rows="3"></textarea>
+                </div>
+                <div class="output-area">
+                    <h4>Output / Console:</h4>
+                    <pre id="output-console">Output will appear here...</pre>
+                </div>
+                <div class="ai-feedback-area">
+                    <h4>AI Assistant Feedback:</h4>
+                    <div id="ai-feedback-box" class="ai-box">AI feedback will appear here.</div>
+                    <div id="ai-rating" class="ai-box">Rating: N/A</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Profile Section -->
+        <section id="student-profile" class="dashboard-section">
+            <h2>My Profile & Progress</h2>
+            <div class="content-block">
+                <h3>Personal Information</h3>
+                <div id="profile-details">
+                    <p><strong>Name:</strong> <span id="profile-name">Loading...</span></p>
+                    <p><strong>ID:</strong> <span id="profile-id">Loading...</span></p>
+                    <p><strong>Email:</strong> <span id="profile-email">Loading...</span></p>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="edit-profile-btn">Edit Profile</button>
+            </div>
+            <div class="content-block">
+                <h3>Skill Heatmap</h3>
+                <div id="heatmap-container" class="heatmap-placeholder">
+                    <p>Skill heatmap loading...</p>
+                </div>
+            </div>
+            <div class="content-block">
+                <h3>Badges Earned</h3>
+                <div id="badges-container" class="badges-container">
+                    <p>Loading badges...</p>
+                </div>
+            </div>
+            <div class="content-block">
+                <h3>Weekly Streaks</h3>
+                <p>Current Coding Streak: 🔥 <span id="profile-streak-current">--</span> Days</p>
+                <p>Longest Streak: <span id="profile-streak-longest">--</span> Days</p>
+                <div id="streak-visualization">
+                    <p>(Streak visualization area)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Job Match Section -->
+        <section id="student-jobs" class="dashboard-section">
+            <h2>Job Match Recommender</h2>
+            <div class="content-block">
+                <p>Based on your profile and coding activity, here are some potential job roles:</p>
+                <div id="job-matches-container">
+                    <p>Loading job recommendations...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="student/student.js"></script>
+<script>
+    // Simulated currentUser object for initialization
+    const currentUser = { id: '101', name: 'Alice Smith', role: 'Student' };
+    initializeStudentDashboard(currentUser);
+</script>
